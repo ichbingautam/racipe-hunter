@@ -1,0 +1,32 @@
+<h1>Recipes</h1>
+<% unless @recipes.empty? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Rank</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @recipes.each do |recipe| %>
+        <tr>
+          <td>
+            <%= link_to(
+              image_tag(recipe["thumbnail"], size: "100", alt: recipe["title"]),
+              recipe["href"],
+              target: "_blank",
+              rel: "nofollow"
+            ) %>
+          </td>
+
+          <td><%= link_to raw(recipe["title"]), recipe["href"], target: "_blank", rel: "nofollow" %></td>
+          <td><%= recipe["ingredients"] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No recipes found.</p>
+<% end %>
